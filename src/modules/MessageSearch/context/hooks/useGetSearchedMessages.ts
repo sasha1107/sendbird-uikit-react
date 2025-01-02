@@ -42,8 +42,9 @@ function useGetSearchedMessages(
       payload: null,
     });
     if (sdk && channelUrl && sdk.createMessageSearchQuery && currentChannel) {
-      if (requestString) {
-        currentChannel.refresh()
+      if (requestString || messageSearchQuery) {
+        currentChannel
+          .refresh()
           .then((channel) => {
             const inputSearchMessageQueryObject: MessageSearchQueryParams = {
               order: MessageSearchOrder.TIMESTAMP,
